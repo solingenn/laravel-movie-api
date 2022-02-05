@@ -30,19 +30,19 @@ class ApiResponseServiceProvider
 
     /**
      * @param string|MessageBag $error
-     * @param array $errorMessage
+     * @param array|MessageBag $errorMessage
      * @param int $code
      *
      * @return JsonResponse
      */
-    public function responseError(string|MessageBag $error, array $errorMessage = [], int $code = 404): JsonResponse
+    public function responseError(string|MessageBag $error, array|MessageBag $errorMessage = [], int $code = 404): JsonResponse
     {
     	$response = [
             'success' => false,
             'message' => $error,
         ];
 
-        if(!empty($errorMessages)) {
+        if(!empty($errorMessage)) {
             $response['data'] = $errorMessage;
         }
 

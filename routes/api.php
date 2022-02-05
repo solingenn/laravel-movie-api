@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\MovieController;
+use App\Http\Controllers\API\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,8 +16,10 @@ use App\Http\Controllers\API\MovieController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::post('register', [AuthController::class, 'signup']);
+Route::post('login', [AuthController::class, 'login']);
 
-Route::resource('movies', MovieController::class);
+
+Route::middleware('auth:sanctum')->group(function() {
+    Route::resource('movies', MovieController::class);
+});
