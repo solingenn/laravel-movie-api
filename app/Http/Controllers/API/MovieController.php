@@ -35,13 +35,12 @@ class MovieController extends Controller
     
     /**
      * @param Request $request
-     * 
      * @return JsonResponse
      */
     public function store(Request $request): JsonResponse
     {
         $input = $request->all();
-        $movieInputTitle = $request->all()['title'];
+        $movieInputTitle = $input['title'];
         $movieQuery = Movie::where('title', $movieInputTitle)->get();
 
         if (sizeof($movieQuery) > 0) {
@@ -64,7 +63,6 @@ class MovieController extends Controller
 
     /**
      * @param int $id
-     * 
      * @return JsonResponse
      */
     public function show(int $id): JsonResponse
@@ -80,7 +78,6 @@ class MovieController extends Controller
     /**
      * @param Request $request
      * @param Movie $movie
-     * 
      * @return JsonResponse
      */
     public function update(Request $request, Movie $movie): JsonResponse
@@ -107,7 +104,6 @@ class MovieController extends Controller
     
     /**
      * @param Movie $movie
-     * 
      * @return JsonResponse
      */
     public function destroy(Movie $movie): JsonResponse

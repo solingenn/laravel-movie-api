@@ -4,19 +4,17 @@ namespace App\Providers\MovieApiProvider;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
-use App\Http\Resources\Movie;
-use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\MessageBag;
 
 class ApiResponseServiceProvider
 {
     /**
-     * @param Movie|AnonymousResourceCollection|array $result
+     * @param $result
      * @param string $message
      *
      * @return JsonResponse
      */
-    public function responseSuccess(Movie|AnonymousResourceCollection|array $result, string $message, int $code = 200): JsonResponse
+    public function responseSuccess($result, string $message, int $code = 200): JsonResponse
     {
     	$response = [
             'success' => true,

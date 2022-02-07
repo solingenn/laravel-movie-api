@@ -18,7 +18,7 @@ class AuthController extends Controller
         $this->apiResponseService = new ApiResponseService;
     }
 
-    public function signup(Request $request)
+    public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
@@ -49,7 +49,7 @@ class AuthController extends Controller
             $authUser = Auth::user(); 
             $success['token'] =  $authUser->createToken('MyAuthApp')->plainTextToken; 
             $success['name'] =  $authUser->name;
-            
+
             return $this->apiResponseService->responseSuccess($success, 'User signed in');
         } else { 
             return $this->apiResponseService->responseError('Unauthorised.', ['error' => 'Unauthorised'], 401);
