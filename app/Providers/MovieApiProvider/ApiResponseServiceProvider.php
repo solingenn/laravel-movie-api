@@ -40,7 +40,7 @@ class ApiResponseServiceProvider
             'message' => $error,
         ];
 
-        if(!empty($errorMessages)) {
+        if(!empty($errorMessage)) {
             $response['data'] = $errorMessage;
         }
 
