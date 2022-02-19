@@ -50,7 +50,7 @@ class AuthController extends Controller
             $success['token'] =  $authUser->createToken('MyAuthApp')->plainTextToken; 
             $success['name'] =  $authUser->name;
 
-            return $this->apiResponseService->responseSuccess($success, 'User signed in');
+            return $this->apiResponseService->responseSuccess($success, 'User signed in.');
         } else { 
             return $this->apiResponseService->responseError('Unauthorised.', ['error' => 'Unauthorised'], 401);
         } 

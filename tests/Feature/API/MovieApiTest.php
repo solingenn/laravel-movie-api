@@ -6,6 +6,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Testing\Fluent\AssertableJson;
 use Tests\TestCase;
 use App\Models\Movie;
+use App\Models\User;
 
 class MovieApiTest extends TestCase
 {
@@ -14,7 +15,11 @@ class MovieApiTest extends TestCase
      */
     public function test_insert_movie_request(): void
     {
-        $response = $this->postJson('/api/movies', [
+        $user = User::factory()->make();
+
+        $response = $this->actingAs($user)
+                        ->withSession(['banned' => false])
+                        ->postJson('/api/movies', [
             'title' => 'A Fistful of Dynamite',
             'release_year' => '1971',
             'description' => 'A former Irish Republican revolutionary...',
@@ -38,7 +43,11 @@ class MovieApiTest extends TestCase
      */
     public function test_get_all_movies_request(): void
     {
-        $response = $this->getJson('/api/movies');
+        $user = User::factory()->make();
+
+        $response = $this->actingAs($user)
+                        ->withSession(['banned' => false])
+                        ->getJson('/api/movies');
 
         $response
             ->assertStatus(200)
@@ -54,11 +63,15 @@ class MovieApiTest extends TestCase
      */
     public function test_movie_exist_request(): void
     {
-        $response = $this->postJson('/api/movies', [
-            'title' => 'A Fistful of Dynamite',
-            'release_year' => '1971',
-            'description' => 'A former Irish Republican revolutionary...',
-        ]);
+        $user = User::factory()->make();
+
+        $response = $this->actingAs($user)
+                        ->withSession(['banned' => false])
+                        ->postJson('/api/movies', [
+                            'title' => 'A Fistful of Dynamite',
+                            'release_year' => '1971',
+                            'description' => 'A former Irish Republican revolutionary...',
+                        ]);
 
         $response
             ->assertStatus(409)
@@ -74,9 +87,13 @@ class MovieApiTest extends TestCase
      */
     public function test_show_movie_request()
     {
+        $user = User::factory()->make();
+
         $movieId = Movie::where('title', 'A Fistful of Dynamite')->get()[0]['id'];
 
-        $response = $this->getJson("/api/movies/$movieId");
+        $response = $this->actingAs($user)
+                        ->withSession(['banned' => false])
+                        ->getJson("/api/movies/$movieId");
 
         $response
             ->assertStatus(200)
@@ -95,9 +112,13 @@ class MovieApiTest extends TestCase
      */
     public function test_update_movie_request()
     {
+        $user = User::factory()->make();
+
         $movieId = Movie::where('title', 'A Fistful of Dynamite')->get()[0]['id'];
 
-        $response = $this->putJson("/api/movies/$movieId", [
+        $response = $this->actingAs($user)
+                        ->withSession(['banned' => false])
+                        ->putJson("/api/movies/$movieId", [
             'title' => 'A Fistful of Dynamite',
             'release_year' => '1971',
             'description' => 'A former Irish Republican revolutionary and a Mexican outlaw...',
@@ -118,10 +139,14 @@ class MovieApiTest extends TestCase
      */
     public function test_delete_movie_request()
     {
+        $user = User::factory()->make();
+
         $movieId = Movie::where('title', 'A Fistful of Dynamite')->get()[0]['id'];
         $movieTitle = Movie::where('title', 'A Fistful of Dynamite')->get()[0]['title'];
 
-        $response = $this->deleteJson("/api/movies/$movieId");
+        $response = $this->actingAs($user)
+                        ->withSession(['banned' => false])
+                        ->deleteJson("/api/movies/$movieId");
 
         $response
             ->assertStatus(202)
