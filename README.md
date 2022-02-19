@@ -2,6 +2,9 @@
 
 Simple API for inserting, showing all or one movie or person, updating and deleting movie or person.
 
+Create database movie-api, set collation to utf8mb4_general_ci.  
+From project root run ./setup.sh script, it will automatically migrate tables (first it will drop all tables if they exist) and it will run all tests.
+
 Before using API, user must be registered and signed in.
 Received token in JSON response must be entered into Authorization->Bearer Token, otherwise endpoints will return ```Unauthorized``` message.
 
