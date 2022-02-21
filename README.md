@@ -57,11 +57,20 @@ PUT     /api/movies/{id}
 DELETE  /api/movies/{id}
 ```
 
-Person endpoint: 
+Persons endpoint: 
 ``` 
 GET     /api/person
 POST    /api/person
 GET     /api/person/{id}
 PUT     /api/person/{id}
 DELETE  /api/person/{id}
+```
+
+Roles endpoint: 
+``` 
+GET     /api/roles
+POST    /api/roles
+GET     /api/roles/{id}
+PUT     /api/roles/{id}
+DELETE  /api/roles/{id}
 ```
