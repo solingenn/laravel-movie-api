@@ -41,7 +41,7 @@ class PersonController extends Controller
         $input = $request->all();
         $personInputFirstName = $input['first_name'];
         $personInputLastName = $input['last_name'];
-        $personQuery = Person::where('first_name', $personInputFirstName)->where('last_name', $personInputLastName)->get();
+        $personQuery = Person::where('first_name', $personInputFirstName)->where('last_name', $personInputLastName)->get('id');
 
         if (sizeof($personQuery) > 0) {
             return $this->apiResponseService->responseError('Person already exists.', [], 409);
@@ -49,8 +49,8 @@ class PersonController extends Controller
 
         $validator = Validator::make($input, [
             'first_name' => 'required',
-            'last_name' => 'required',
-            'born' => 'required',
+            'last_name'  => 'required',
+            'born'       => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -78,17 +78,18 @@ class PersonController extends Controller
     /**
      * @param Request $request
      * @param Person $person
-     * 
      * @return JsonResponse
      */
     public function update(Request $request, Person $person): JsonResponse
     {
         $input = $request->all();
 
+        //die(var_dump($input));
+
         $validator = Validator::make($input, [
             'first_name' => 'required',
-            'last_name' => 'required',
-            'born' => 'required',
+            'last_name'  => 'required',
+            'born'       => 'required',
         ]);
 
         if ($validator->fails()) {

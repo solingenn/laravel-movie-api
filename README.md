@@ -1,9 +1,10 @@
 ## Movie API
 
-Simple API for inserting, showing all or one movie or person, updating and deleting movie or person.
+Simple API for inserting, showing one or all, updating and deleting movie, person, role and movie details.
 
-Create database movie-api, set collation to utf8mb4_general_ci.  
-From project root run ./setup.sh script, it will automatically migrate tables (first it will drop all tables if they exist) and it will run all tests.
+Create database movie-api.
+From project root run ./setup.sh script, it will automatically migrate tables (first it will drop all tables if they exist), insert seed  
+data and it will run all tests.
 
 Before using API, user must be registered and signed in.
 Received token in JSON response must be entered into Authorization->Bearer Token, otherwise endpoints will return ```Unauthorized``` message.
@@ -73,4 +74,12 @@ POST    /api/roles
 GET     /api/roles/{id}
 PUT     /api/roles/{id}
 DELETE  /api/roles/{id}
+```
+
+Movie details endpoint
+```
+GET     /api/movie-details/{id} -> id of movie of which you want to see details
+POST    /api/movie-details
+PUT     /api/movie-details/{id}
+DELETE  /api/movie-details/{id}
 ```

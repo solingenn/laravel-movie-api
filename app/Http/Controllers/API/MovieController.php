@@ -40,17 +40,17 @@ class MovieController extends Controller
     public function store(Request $request): JsonResponse
     {
         $input = $request->all();
-        $movieInputTitle = $input['title'];
-        $movieQuery = Movie::where('title', $movieInputTitle)->get();
+        $movieTitle = $input['title'];
+        $movieQuery = Movie::where('title', $movieTitle)->get();
 
         if (sizeof($movieQuery) > 0) {
             return $this->apiResponseService->responseError('Movie title already exists.', [], 409);
         }
 
         $validator = Validator::make($input, [
-            'title' => 'required',
+            'title'        => 'required',
             'release_year' => 'required',
-            'description' => 'required',
+            'description'  => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -85,9 +85,9 @@ class MovieController extends Controller
         $input = $request->all();
 
         $validator = Validator::make($input, [
-            'title' => 'required',
+            'title'        => 'required',
             'release_year' => 'required',
-            'description' => 'required',
+            'description'  => 'required',
         ]);
 
         if ($validator->fails()) {

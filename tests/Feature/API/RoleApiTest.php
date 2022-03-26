@@ -20,16 +20,16 @@ class RoleApiTest extends TestCase
         $response = $this->actingAs($user)
                         ->withSession(['banned' => false])
                         ->postJson('/api/roles', [
-                            'role_name' => 'composer'
+                            'role_name' => 'screenwriter'
                         ]);
 
-        $roleId = Role::where('role_name', 'composer')->get()[0]['id'];
+        $roleId = Role::where('role_name', 'screenwriter')->get()[0]['id'];
         $response
             ->assertStatus(201)
             ->assertJson(fn (AssertableJson $json) =>
                 $json->where('success', true)
                     ->where('data.id', $roleId)
-                    ->where('data.role_name', 'composer')
+                    ->where('data.role_name', 'screenwriter')
                     ->where('message', 'Role created.')
             );
     }
@@ -64,7 +64,7 @@ class RoleApiTest extends TestCase
         $response = $this->actingAs($user)
                         ->withSession(['banned' => false])
                         ->postJson('/api/roles', [
-                            'role_name' => 'composer'
+                            'role_name' => 'screenwriter'
                         ]);
 
         $response
@@ -83,7 +83,7 @@ class RoleApiTest extends TestCase
     {
         $user = User::factory()->make();
         
-        $roleId = Role::where('role_name', 'composer')->get()[0]['id'];
+        $roleId = Role::where('role_name', 'screenwriter')->get()[0]['id'];
 
         $response = $this->actingAs($user)
                         ->withSession(['banned' => false])
@@ -94,7 +94,7 @@ class RoleApiTest extends TestCase
             ->assertJson(fn (AssertableJson $json) =>
                 $json->where('success', true)
                     ->where('data.id', $roleId)
-                    ->where('data.role_name', 'composer')
+                    ->where('data.role_name', 'screenwriter')
                     ->where('message', 'Role fetched.')
             );
     }
@@ -106,19 +106,19 @@ class RoleApiTest extends TestCase
     {
         $user = User::factory()->make();
         
-        $roleId = Role::where('role_name', 'composer')->get()[0]['id'];
+        $roleId = Role::where('role_name', 'screenwriter')->get()[0]['id'];
 
         $response = $this->actingAs($user)
                         ->withSession(['banned' => false])
                         ->putJson("/api/roles/$roleId", [
-                            'role_name' => 'music composer'
+                            'role_name' => 'screenplay'
                         ]);
              
         $response
             ->assertStatus(201)
             ->assertJson(fn (AssertableJson $json) =>
                 $json->where('success', true)
-                    ->where('data.role_name', 'music composer')
+                    ->where('data.role_name', 'screenplay')
                     ->where('message', 'Role updated.')
                     ->etc()
             );
@@ -131,7 +131,7 @@ class RoleApiTest extends TestCase
     {
         $user = User::factory()->make();
         
-        $roleId = Role::where('role_name', 'music composer')->get()[0]['id'];
+        $roleId = Role::where('role_name', 'screenplay')->get()[0]['id'];
         $roleName = Role::where('id', $roleId)->get()[0]['role_name'];
 
         $response = $this->actingAs($user)

@@ -6,6 +6,7 @@ use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\MovieController;
 use App\Http\Controllers\API\PersonController;
 use App\Http\Controllers\API\RoleController;
+use App\Http\Controllers\API\MovieDetailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,4 +26,5 @@ Route::middleware('auth:sanctum')->group(function() {
     Route::resource('movies', MovieController::class);
     Route::resource('persons', PersonController::class);
     Route::resource('roles', RoleController::class);
+    Route::resource('movie-details', MovieDetailController::class);
 });
