@@ -9,6 +9,10 @@ data and it will run all tests.
 Before using API, user must be registered and signed in.  
 Received token in JSON response must be entered into Authorization->Bearer Token, otherwise endpoints will return ```Unauthorized``` message.
 
+Postman documentation (only auth and movies endpoints are added, rest will follow);  
+[API postman documentation](https://www.postman.com/systemm/workspace/laravel-movie-api-documentation/documentation/4845924-6bb31953-60bf-4bbc-a36c-64f7fa4aa2a0)  
+
+
 Register endpoint:
 ```
 POST /api/register
