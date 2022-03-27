@@ -3,7 +3,7 @@
 Simple API for inserting, showing one or all, updating and deleting movie, person, role and movie details.
 
 Create database movie-api.  
-From project root run ./setup.sh script, it will automatically migrate tables (first it will drop all tables if they exist), insert seed  
+From project root run ./setup.sh script, it will automatically migrate tables (first it will drop all tables if they exist), insert seed 
 data and it will run all tests.
 
 Before using API, user must be registered and signed in.  
