@@ -69,8 +69,8 @@ class MovieDetailController extends Controller
     public function store(Request $request): JsonResponse
     {
         $input = $request->all();
-        $personName = trim($input['person_name']);
         $movieTitle = trim($input['movie_title']);
+        $personName = trim($input['person_name']);
         $roleName = trim($input['role']);
         $characterName = (empty($input['character_name']) && $roleName !== 'actor') ? 'Himself' : trim($input['character_name']);
 
